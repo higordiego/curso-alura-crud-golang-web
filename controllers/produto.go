@@ -17,7 +17,6 @@ func TodosOsProdutos(w http.ResponseWriter, r *http.Request) {
 	todosOsProdutos := models.BuscarTodosOsProdutos()
 
 	temp.ExecuteTemplate(w, "Index", todosOsProdutos)
-
 }
 
 // New - handler
@@ -48,4 +47,11 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 		models.CriarNovoProduto(nome, descricao, precoConvertidoParaFloat, quantidadeConvertidaParaInt)
 		http.Redirect(w, r, "/", 301)
 	}
+}
+
+// Delete - handler
+func Delete(w http.ResponseWriter, r *http.Request) {
+	idDoProduto :=  r.URL.Query().Get("id")
+	models.DeletarProduto(idDoProduto)
+	http.Redirect(w, r, "/", 301)
 }

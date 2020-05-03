@@ -60,3 +60,17 @@ func CriarNovoProduto(nome, descricao string, preco float64, quantidade int) {
 
 	defer db.Close()
 }
+
+// DeletarProduto - struct models
+func DeletarProduto(idProduto string) {
+	db := db.ConectaComBancoDeDados()
+
+	deletarOProduto, err := db.Prepare("delete from produtos where id = $1")
+	if err != nil {
+		panic(err)
+	}
+
+	deletarOProduto.Exec(idProduto)
+
+	defer db.Close()
+}
