@@ -6,15 +6,6 @@ import (
 	"text/template"
 )
 
-// Produto - struct
-type Produto struct {
-	ID         int
-	Nome       string
-	Descricao  string
-	Preco      float64
-	Quantidade int
-}
-
 var temp = template.Must(template.ParseGlob("templates/*.html"))
 
 func index(w http.ResponseWriter, r *http.Request) {
