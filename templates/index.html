@@ -32,7 +32,7 @@
                             <td>{{.Descricao}}</td>
                             <td>{{.Preco}}</td>
                             <td>{{.Quantidade}}</td>
-                            <td> <a href="/delete?id={{.ID}}" class="btn btn-danger"> Deletar </a> </td>
+                            <td> <button class="btn btn-danger" onClick="onDelete('{{.ID}}')">Deletar </button></td>
                         </tr>
                         {{end}}
                     </tbody>
@@ -47,5 +47,12 @@
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+
+<script>
+    function onDelete(id) {
+        let resposta = confirm("Tem certeza que deseja deleta esse produto ?")
+        if (resposta) window.location = `/delete?id=${id}`
+    }
+</script>
 </html>
 {{end}}
