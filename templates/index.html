@@ -1,7 +1,6 @@
 {{define "Index"}}
 {{template "_head"}}
 {{template "_menu"}}
-
 <body>
     <div class="container">
         <section class="card">
@@ -13,6 +12,8 @@
                             <th>Descrição</th>
                             <th>Preço</th>
                             <th>Quantidade</th>
+                            <th class="text-center">Editar</th>
+                            <th class="text-center">Deletar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,9 +23,10 @@
                             <td>{{.Descricao}}</td>
                             <td>{{.Preco}}</td>
                             <td>{{.Quantidade}}</td>
-                            <td> <button class="btn btn-danger" onClick="onDelete('{{.ID}}')">Deletar </button></td>
+                            <td class="text-center"><a href="edit?id={{.ID}}" class="btn btn-info"> Editar </a></td>
+                            <td class="text-center"> <button class="btn btn-danger" onClick="onDelete('{{.ID}}')">Deletar </button></td>
                         </tr>
-                        {{end}} 
+                        {{end}}
                     </tbody>
                 </table>
             </div>
@@ -35,7 +37,8 @@
 
     </div>
 </body>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
 <script>
@@ -44,5 +47,6 @@
         if (resposta) window.location = `/delete?id=${id}`
     }
 </script>
+
 </html>
 {{end}}

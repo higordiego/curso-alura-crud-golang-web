@@ -74,3 +74,35 @@ func DeletarProduto(idProduto string) {
 
 	defer db.Close()
 }
+
+// EditaProduto - struct
+func EditaProduto(idProduto string) Produto {
+	db := db.ConectaComBancoDeDados()
+	
+	produtoBanco, err := db.Query("select id, nome, descricao, preco, quantidade from produtos where id = $1", idProduto)
+
+	if err != nil {
+		panic(err)
+	}
+	
+	produtoParaAtualizar := Produto{}
+
+	for produtoBanco.Next() {
+		var id, quantidade int
+		var nome, descricao string
+		var preco float64
+		err = produtoBanco.Scan(&id, &nome, &descricao, &preco, &quantidade)
+		if err != nil {
+			panic(err.Error())
+		}
+		produtoParaAtualizar.ID = id
+		produtoParaAtualizar.Nome = nome
+		produtoParaAtualizar.Descricao = descricao
+		produtoParaAtualizar.Quantidade = quantidade
+		produtoParaAtualizar.Preco = preco
+	}
+
+	defer db.Close()
+
+	return produtoParaAtualizar
+}
